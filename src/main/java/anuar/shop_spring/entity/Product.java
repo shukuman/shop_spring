@@ -30,6 +30,6 @@ public class Product {
     private List<Cart> carts;
 
     @ManyToMany
-    @JoinTable(name = "orders")
-    private List<Order> orders;
+    @JoinTable(name = "order_products")
+    private List<OrderProduct> orderProductList;
 }

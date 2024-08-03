@@ -26,11 +26,11 @@ public class Order {
     @Column(name = "address")
     private String address;
 
-    @ManyToMany
-    @JoinTable(name = "users")
-    private List<User> users;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToMany
-    @JoinTable(name = "products")
-    private List<Product> products;
+    @JoinTable(name = "order_products")
+    private List<OrderProduct> orderProductList;
 }

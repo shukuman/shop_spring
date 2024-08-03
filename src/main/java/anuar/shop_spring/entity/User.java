@@ -32,13 +32,12 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
     @ManyToMany
     @JoinTable(name = "carts")
     private List<Cart> carts;
-
-    @ManyToMany
-    @JoinTable(name = "orders")
-    private List<Order> orders;
 }
