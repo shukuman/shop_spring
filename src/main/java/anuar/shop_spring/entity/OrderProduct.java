@@ -16,6 +16,9 @@ public class OrderProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JoinColumn(name = "count")
+    private Integer count;
+
     @ManyToMany
     @JoinTable(name = "orders")
     private List<Order> orders;

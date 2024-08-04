@@ -16,6 +16,9 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JoinColumn(name = "count")
+    private Integer count;
+
     @ManyToMany
     @JoinTable(name = "users")
     private List<User> users;
