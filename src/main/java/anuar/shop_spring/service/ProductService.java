@@ -20,4 +20,16 @@ public class ProductService {
         products.addAll(productRepository.findAll());
         return products;
     }
+
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElseThrow(null);
+    }
+
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    public void deleteProductById(Long id) {
+        productRepository.deleteById(id);
+    }
 }

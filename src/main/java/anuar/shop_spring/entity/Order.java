@@ -31,6 +31,6 @@ public class Order {
     private User user;
 
     @ManyToMany
-    @JoinTable(name = "order_products")
+    @JoinTable(name = "orders_products")
     private List<OrderProduct> orderProductList;
 }
