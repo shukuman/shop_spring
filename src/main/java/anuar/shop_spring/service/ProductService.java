@@ -25,8 +25,8 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(null);
     }
 
-    public Product saveProduct(Product product) {
-        return productRepository.save(product);
+    public void saveProduct(Product product) {
+        productRepository.save(product);
     }
 
     public void deleteProductById(Long id) {
