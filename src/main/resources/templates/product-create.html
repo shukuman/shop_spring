@@ -13,10 +13,14 @@
 </head>
 <body>
 
+<h2>New product</h2>
+
 <div>
-    <h2>New product</h2>
     <form th:method="post" th:action="@{/product-create}" th:object="${product}">
 
+        <label for="category">Category ID</label>
+        <input type="text" th:field="*{category.id}" id="category">
+        <br>
         <label for="name">Name</label>
         <input type="text" th:field="*{name}" id="name">
         <br>

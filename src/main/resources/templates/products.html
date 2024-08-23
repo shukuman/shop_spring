@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Products</title>
-    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="css/table-style.css">
 </head>
 
 <body>
@@ -15,6 +15,7 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>CATEGORY</th>
             <th>NAME</th>
             <th>PRICE</th>
             <th></th>
@@ -25,6 +26,7 @@
         <tbody>
         <tr th:each="product : ${products}">
             <td th:text="${product.id}"></td>
+            <td th:text="${product.category.name}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}"></td>
 
