@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product info</title>
+    <style>
+
+        * {
+            margin: 20px auto;
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 1rem;
+        }
+
+        .info {
+            border-collapse: collapse;
+            table-layout: auto;
+            width: 550px;
+            border: 2px solid cornflowerblue;
+            text-align: center;
+        }
+
+        .info th {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            padding: 8px;
+            background: cornflowerblue;
+        }
+
+        .info td {
+            font-size: 16px;
+            font-weight: bold;
+            height: 50px;
+        }
+
+        .specifications {
+            display: flex;
+            flex-direction: row;
+            width: 550px;
+            font-weight: bold;
+        }
+
+        .specifications thead td {
+            height: 25px;
+        }
+
+        .specifications tbody td {
+            border-bottom: 2px solid cornflowerblue;
+            width: 250px;
+            height: 25px;
+            font-weight: lighter;
+        }
+
+        .reviews {
+            border-collapse: collapse;
+            table-layout: fixed;
+            width: 550px;
+        }
+
+        .reviews th {
+            border-bottom: 2px solid cornflowerblue;
+        }
+
+        .reviews td {
+            border-bottom: 1px solid black;
+            height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+<table class="info">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td th:text="${productById.id}"></td>
+        <td th:text="${productById.category.name}"></td>
+        <td th:text="${productById.name}"></td>
+        <td th:text="${productById.price}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="specifications">
+    <thead>
+    <tr th:each="specification : ${productById.category.getSpecifications()}">
+        <td th:text="${specification.name}"></td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="value : ${productById.values}">
+        <td th:text="${value.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="rating">
+    <thead>
+    <tr>
+        <th style="color: cornflowerblue">REVIEWS</th>
+        <th th:text="${#aggregates.avg()}">Average rating</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <th></th>
+        <th>2</th>
+    </tr>
+    </tbody>
+</table>
+
+<table class="reviews">
+    <thead>
+    <tr>
+        <th>Comment</th>
+        <th>Assessment</th>
+        <th>User</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="review : ${productById.reviews}">
+        <td th:text="${review.comment}"></td>
+        <td th:text="${review.assessment}"></td>
+        <td th:text="${review.user.firstName}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

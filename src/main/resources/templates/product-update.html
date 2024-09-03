@@ -3,27 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Update product</title>
-    <style>
-        * {
-            margin: 15px auto;
-            text-align: center;
-            font-family: sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/table-style.css">
 </head>
 <body>
 
 <h2>Update product</h2>
 <form th:method="post" th:action="@{/product-update}" th:object="${product}">
 
-    <label for="id"></label>
-    <input type="hidden" th:field="*{id}" id="id">
-    <br>
     <label for="name">Name</label>
     <input type="text" th:field="*{name}" id="name">
     <br>
     <label for="price">Price</label>
     <input type="number" th:field="*{price}" id="price">
+    <br>
+    <label for="id"></label>
+    <input type="hidden" th:field="*{id}" id="id">
+    <br>
+    <label for="category"></label>
+    <input type="hidden" th:field="*{category.id}" id="category">
     <br>
     <input type="submit" value="Update">
 

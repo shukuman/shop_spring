@@ -3,13 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create product</title>
-    <style>
-        * {
-            margin: 15px auto;
-            text-align: center;
-            font-family: sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/table-style.css">
 </head>
 <body>
 
@@ -27,6 +21,7 @@
         <label for="price">Price</label>
         <input type="number" th:field="*{price}" id="price">
         <br>
+        <label for="submit"></label>
         <input type="submit" value="Create" id="submit">
 
     </form>
