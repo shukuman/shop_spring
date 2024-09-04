@@ -67,6 +67,13 @@
             height: 50px;
         }
 
+        .rating {
+            width: 550px;
+            text-align: end;
+            color: cornflowerblue;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
@@ -105,21 +112,8 @@
     </tbody>
 </table>
 
-<table class="rating">
-    <thead>
-    <tr>
-        <th style="color: cornflowerblue">REVIEWS</th>
-        <th th:text="${#aggregates.avg()}">Average rating</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr>
-        <th></th>
-        <th>2</th>
-    </tr>
-    </tbody>
-</table>
+<div style="font-size:18px; font-weight: bold">REVIEWS</div>
+<div class="rating" th:text="'Average rating: ' + ${#aggregates.avg(rating)}"></div>
 
 <table class="reviews">
     <thead>

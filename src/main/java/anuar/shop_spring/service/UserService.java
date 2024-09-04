@@ -24,8 +24,21 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(null);
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public User registerUser(String firstName, String lastName, String email, String password) {
+        if (email == null || password == null) {
+           return null;
+        } else {
+            User user = new User();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setPassword(password);
+            return userRepository.save(user);
+        }
+    }
+
+    public User authenticateUser(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password).orElse(null);
     }
 
     public void deleteUserById(Long id) {

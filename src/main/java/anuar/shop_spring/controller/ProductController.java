@@ -1,6 +1,7 @@
 package anuar.shop_spring.controller;
 
 import anuar.shop_spring.entity.Product;
+import anuar.shop_spring.entity.Review;
 import anuar.shop_spring.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,6 +26,19 @@ public class ProductController {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
         return "products";
+    }
+
+    @GetMapping(path = "/products/{id}")
+    public String showProduct(@PathVariable("id") Long id, Model model) {
+        Product productByID = productService.getProductById(id);
+        model.addAttribute("productById", productByID);
+
+        List<Integer> rating = new ArrayList<>();
+        for(Review r : productByID.getReviews()) {
+            rating.add(r.getAssessment());
+        }
+        model.addAttribute("rating", rating);
+        return "product-info";
     }
 
     @GetMapping(path = "/product-create")

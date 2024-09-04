@@ -17,21 +17,19 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping(path = "/users")
-    public String showAllUsers(Model model) {
+    public String getAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "users";
     }
 
-    @GetMapping(path = "/user-create")
-    public String createUserForm(User user, Model model) {
-        model.addAttribute("user", user);
-        return "user-create";
+    @GetMapping(path = "/register")
+    public String getRegisterPage() {
+        return "register_page";
     }
 
-    @PostMapping(path = "/user-create")
-    public String createUser(User user) {
-        userService.saveUser(user);
-        return "redirect:/users";
+    @GetMapping(path = "/login")
+    public String getLoginPage() {
+        return "login_page";
     }
 }
