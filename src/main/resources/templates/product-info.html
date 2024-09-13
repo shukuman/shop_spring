@@ -113,7 +113,8 @@
 </table>
 
 <div style="font-size:18px; font-weight: bold">REVIEWS</div>
-<div class="rating" th:text="'Average rating: ' + ${#aggregates.avg(rating)}"></div>
+<!--<div class="rating" th:text="'Average rating: ' + ${#aggregates.avg(rating)}"></div>-->
+<div class="rating" th:text="'Average rating: ' + ${average}"></div>
 
 <table class="reviews">
     <thead>

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +34,13 @@ public class ProductController {
     public String showProduct(@PathVariable("id") Long id, Model model) {
         Product productByID = productService.getProductById(id);
         model.addAttribute("productById", productByID);
-
-        List<Integer> rating = new ArrayList<>();
-        for(Review r : productByID.getReviews()) {
-            rating.add(r.getAssessment());
-        }
-        model.addAttribute("rating", rating);
+//        List<BigDecimal> rating = new ArrayList<>();
+//        for(Review r : productByID.getReviews()) {
+//            rating.add(BigDecimal.valueOf(r.getAssessment()));
+//        }
+//        model.addAttribute("rating", rating);
+        BigDecimal averageRating = productService.getAverageRating(productByID);
+        model.addAttribute("average", averageRating);
         return "product-info";
     }
 
