@@ -39,10 +39,14 @@ public class ProductService {
     public BigDecimal getAverageRating(Product product) {
         try {
             Double rating = 0.0;
+            int count = 0;
             for(Review r : product.getReviews()) {
-                rating += r.getAssessment();
+                if(r.isStatus()) {
+                    rating += r.getAssessment();
+                    count++;
+                }
             }
-            BigDecimal averageRating = BigDecimal.valueOf(rating / product.getReviews().size());
+            BigDecimal averageRating = BigDecimal.valueOf(rating/count);
             return averageRating.setScale(2, RoundingMode.HALF_UP);
         } catch (Exception e) {
             return null;

@@ -21,7 +21,7 @@ public class Review {
     private String comment;
 
     @Column(name = "status")
-    private String status;
+    private boolean status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
