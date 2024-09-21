@@ -22,6 +22,10 @@ public class ReviewService {
         return reviews;
     }
 
+    public List<Review> getAllReviewsByStatus(Long id, Boolean status) {
+        return reviewRepository.getReviewsByProductIdAndStatus(id, status);
+    }
+
     public Review getReviewById(Long id) {
         return reviewRepository.findById(id).orElseThrow(null);
     }

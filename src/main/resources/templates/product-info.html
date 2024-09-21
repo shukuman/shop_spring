@@ -125,12 +125,10 @@
     </thead>
 
     <tbody>
-    <tr th:each="review : ${productById.reviews}">
-        <div th:if="${review.isStatus()}">
-            <td th:text="${review.comment}"></td>
-            <td th:text="${review.assessment}"></td>
-            <td th:text="${review.user.firstName}"></td>
-        </div>
+    <tr th:each="review : ${reviewsByProductIdAndStatus}">
+        <td th:text="${review.comment}"></td>
+        <td th:text="${review.assessment}"></td>
+        <td th:text="${review.user.firstName}"></td>
     </tr>
     </tbody>
 </table>

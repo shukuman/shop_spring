@@ -3,7 +3,9 @@ package anuar.shop_spring.controller;
 import anuar.shop_spring.entity.Product;
 import anuar.shop_spring.entity.Review;
 import anuar.shop_spring.service.ProductService;
+import anuar.shop_spring.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +25,11 @@ public class ProductController {
 
     private final ProductService productService;
 
+    private final ReviewService reviewService;
+
     @GetMapping(path = "/products")
     public String showAllProducts(Model model) {
-        List<Product> products = productService.getAllProducts();
+        List<Product> products = productService.getProducts();
         model.addAttribute("products", products);
         return "products";
     }
@@ -35,8 +39,12 @@ public class ProductController {
         Product productByID = productService.getProductById(id);
         model.addAttribute("productById", productByID);
 
-        BigDecimal averageRating = productService.getAverageRating(productByID);
+        BigDecimal averageRating = productService.getAverageRating(productByID, id, true);
         model.addAttribute("average", averageRating);
+
+        List<Review> reviewsByProductIdAndStatus = reviewService.getAllReviewsByStatus(id, true);
+        model.addAttribute("reviewsByProductIdAndStatus", reviewsByProductIdAndStatus);
+
         return "product-info";
     }
 

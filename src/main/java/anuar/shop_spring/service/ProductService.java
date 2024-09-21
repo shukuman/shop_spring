@@ -3,8 +3,8 @@ package anuar.shop_spring.service;
 import anuar.shop_spring.entity.Product;
 import anuar.shop_spring.entity.Review;
 import anuar.shop_spring.repository.ProductRepository;
+import anuar.shop_spring.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -18,10 +18,10 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public List<Product> getAllProducts() {
-        List<Product> products = new ArrayList<>();
-        products.addAll(productRepository.findAll());
-        return products;
+    private final ReviewRepository reviewRepository;
+
+    public List<Product> getProducts() {
+        return productRepository.getAllProducts();
     }
 
     public Product getProductById(Long id) {
@@ -36,15 +36,13 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public BigDecimal getAverageRating(Product product) {
+    public BigDecimal getAverageRating(Product product, Long id, Boolean status) {
         try {
             Double rating = 0.0;
             int count = 0;
-            for(Review r : product.getReviews()) {
-                if(r.isStatus()) {
-                    rating += r.getAssessment();
-                    count++;
-                }
+            for(Review r : reviewRepository.getReviewsByProductIdAndStatus(id, status)) {
+                rating += r.getAssessment();
+                count++;
             }
             BigDecimal averageRating = BigDecimal.valueOf(rating/count);
             return averageRating.setScale(2, RoundingMode.HALF_UP);
