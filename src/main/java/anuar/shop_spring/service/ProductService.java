@@ -20,7 +20,7 @@ public class ProductService {
 
     private final ReviewRepository reviewRepository;
 
-    public List<Product> getProducts() {
+    public List<Product> getAllProducts() {
         return productRepository.getAllProducts();
     }
 
@@ -36,11 +36,11 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public BigDecimal getAverageRating(Product product, Long id, Boolean status) {
+    public BigDecimal getAverageRating(Product product, Boolean status) {
         try {
             Double rating = 0.0;
             int count = 0;
-            for(Review r : reviewRepository.getReviewsByProductIdAndStatus(id, status)) {
+            for(Review r : reviewRepository.getReviewsByProductIdAndStatus(product.getId(), status)) {
                 rating += r.getAssessment();
                 count++;
             }

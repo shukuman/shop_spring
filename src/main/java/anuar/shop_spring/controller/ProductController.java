@@ -29,7 +29,7 @@ public class ProductController {
 
     @GetMapping(path = "/products")
     public String showAllProducts(Model model) {
-        List<Product> products = productService.getProducts();
+        List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
         return "products";
     }
@@ -39,7 +39,7 @@ public class ProductController {
         Product productByID = productService.getProductById(id);
         model.addAttribute("productById", productByID);
 
-        BigDecimal averageRating = productService.getAverageRating(productByID, id, true);
+        BigDecimal averageRating = productService.getAverageRating(productByID, true);
         model.addAttribute("average", averageRating);
 
         List<Review> reviewsByProductIdAndStatus = reviewService.getAllReviewsByStatus(id, true);
