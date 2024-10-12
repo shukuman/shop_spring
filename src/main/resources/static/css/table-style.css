@@ -1,5 +1,5 @@
 * {
-    margin: 15px auto;
+    margin: 10px auto;
     text-align: center;
     font-family: sans-serif;
     text-decoration: none;
@@ -23,6 +23,7 @@
 .table td {
     font-size: 16px;
     font-weight: bold;
+    padding: 8px;
 }
 
 .table tr:nth-child(even){
@@ -64,5 +65,6 @@
 }
 
 .details {
-    color: black;
+    color: cornflowerblue;
+    text-decoration: underline;
 }

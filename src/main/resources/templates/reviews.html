@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+</head>
+<body>
+<div>
+    <h2> Reviews</h2>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>Assesment</th>
+            <th>Comments</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="review : ${reviewsTrue}">
+            <td th:text="${review.assessment}"></td>
+            <td th:text="${review.comment}"></td>
+            <td th:text="${review.isStatus()}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>Assesment</th>
+            <th>Comments</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="review : ${reviewsFalse}">
+            <td th:text="${review.assessment}"></td>
+            <td th:text="${review.comment}"></td>
+            <td th:text="${review.isStatus()}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

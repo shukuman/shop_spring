@@ -2,16 +2,14 @@ package anuar.shop_spring.controller;
 
 import anuar.shop_spring.entity.Product;
 import anuar.shop_spring.entity.Review;
+import anuar.shop_spring.service.CartService;
 import anuar.shop_spring.service.ProductService;
 import anuar.shop_spring.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -26,6 +24,8 @@ public class ProductController {
     private final ProductService productService;
 
     private final ReviewService reviewService;
+
+    private final CartService cartService;
 
     @GetMapping(path = "/products")
     public String showAllProducts(Model model) {
@@ -77,5 +77,12 @@ public class ProductController {
     public String updateProduct(Product product) {
         productService.saveProduct(product);
         return "redirect:/products";
+    }
+
+    @GetMapping(path = "/products-list")
+    public String showProductsList(Model model) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        return "products-list";
     }
 }

@@ -98,9 +98,6 @@ create table reviews
     foreign key (product_id) references products (id)
 );
 
-insert into categories (category_name)
-values ('Smartphone');
-
 update categories
 set
     category_name = 'Computers'
@@ -115,10 +112,10 @@ values (1, 'Manufacturer'),
 
 
 insert into values (specification_id, product_id, value_name)
-values (1, 1, 'Apple'),
-       (2, 1, 'IOS'),
-       (3, 1, '512GB'),
-       (4, 1, 'Silver');
+values (5, 1, 'Google'),
+       (6, 1, 'Android'),
+       (7, 1, '512GB'),
+       (8, 1, 'Silver');
 
 insert into users (role, first_name, last_name, e_mail, password)
 values (1, 'admin', 'admin', 'admin@gmail.com', 'admin'),
@@ -138,6 +135,8 @@ set
 WHERE
     id = 1;
 
+delete from carts
+where id = 1;
 
 select p.id,
        c.category_name,
@@ -158,3 +157,6 @@ join reviews r on p.id = r.product_id where status = true;
 
 select r.comment, r.product_id
 from reviews r where r.product_id = 1 and r.status = true;
+
+insert into carts (user_id, product_id, count)
+values (2, 2, 1);

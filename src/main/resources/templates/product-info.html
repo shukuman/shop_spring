@@ -93,7 +93,7 @@
         <td th:text="${productById.id}"></td>
         <td th:text="${productById.category.name}"></td>
         <td th:text="${productById.name}"></td>
-        <td th:text="${productById.price}"></td>
+        <td th:text="${productById.price} + ' ₸'"></td>
     </tr>
     </tbody>
 </table>
@@ -112,7 +112,7 @@
     </tbody>
 </table>
 
-<div style="font-size:18px; font-weight: bold">REVIEWS</div>
+<div style="font-size: 18px; font-weight: bold">REVIEWS</div>
 <div class="rating" th:text="'Average rating: ' + ${average}"></div>
 
 <table class="reviews">

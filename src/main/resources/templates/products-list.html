@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Products List</title>
     <link rel="stylesheet" href="css/table-style.css">
 </head>
 
 <body>
 <div>
-    <h2> Products</h2>
+    <h2>Products List</h2>
 
     <table class="table">
 
@@ -17,9 +17,8 @@
             <th>ID</th>
             <th>NAME</th>
             <th>PRICE</th>
-            <th></th>
-            <th></th>
-            <th>Info</th>
+            <th>Product info</th>
+            <th>Action</th>
         </tr>
         </thead>
 
@@ -28,15 +27,12 @@
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.price} + ' ₸'"></td>
-
-            <td><a class="button-edit" th:href="@{product-update/{id}(id=${product.id})}">Edit</a></td>
-            <td><a class="button-delete" th:href="@{product-delete/{id}(id=${product.id})}">Delete</a></td>
-            <td><a class="details" th:href="@{products/{id}(id=${product.id})}">Details</a></td>
+            <td><a class="details" th:href="@{products/{id}(id=${product.id})}">More</a></td>
+            <td><a th:href="@{/addProductForm/{id}(id=${product.id})}">Add to Cart</a></td>
         </tr>
         </tbody>
 
     </table>
 </div>
-<p><a class="button-create" href="/product-create">Create product</a></p>
 </body>
 </html>
