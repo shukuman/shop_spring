@@ -1,8 +1,10 @@
 package anuar.shop_spring.controller;
 
+import anuar.shop_spring.entity.Category;
 import anuar.shop_spring.entity.Product;
 import anuar.shop_spring.entity.Review;
 import anuar.shop_spring.service.CartService;
+import anuar.shop_spring.service.CategoryService;
 import anuar.shop_spring.service.ProductService;
 import anuar.shop_spring.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,8 @@ public class ProductController {
 
     private final CartService cartService;
 
+    private final CategoryService categoryService;
+
     @GetMapping(path = "/products")
     public String showAllProducts(Model model) {
         List<Product> products = productService.getAllProducts();
@@ -50,6 +54,8 @@ public class ProductController {
 
     @GetMapping(path = "/product-create")
     public String createProductForm(Product product, Model model) {
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
         model.addAttribute("product", product);
         return "product-create";
     }

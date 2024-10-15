@@ -37,7 +37,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
-    @ManyToMany
-    @JoinTable(name = "carts")
+    @OneToMany(mappedBy = "user")
     private List<Cart> carts;
 }

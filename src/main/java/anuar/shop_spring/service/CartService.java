@@ -20,7 +20,9 @@ public class CartService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
 
-    public void addProductToCart(Cart cart) {
+    public void addProductToCart(Cart cart, Product product, User user) {
+        cart.setProduct(product);
+        cart.setUser(user);
         cartRepository.save(cart);
     }
 }

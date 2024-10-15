@@ -19,11 +19,11 @@ public class Cart {
     @JoinColumn(name = "count")
     private Integer count;
 
-    @ManyToMany
+    @ManyToOne
     @JoinTable(name = "users")
-    private List<User> users;
+    private User user;
 
-    @ManyToMany
+    @ManyToOne
     @JoinTable(name = "products")
-    private List<Product> products;
+    private Product product;
 }

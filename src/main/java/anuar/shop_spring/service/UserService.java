@@ -41,6 +41,9 @@ public class UserService {
         return userRepository.findByEmailAndPassword(email, password).orElse(null);
     }
 
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }

@@ -14,12 +14,19 @@
     <input type="hidden" id="cartId" th:field="*{id}">
     <br>
 
-<!--  <label for="userId">User ID:</label>-->
-<!--  <input type="number" id="userId" th:field="*{users}">-->
+    <label for="userId">User ID:</label>
+    <input type="number" id="userId" th:field="${user.id}">
+    <br>
 
     <label for="productId">Product ID:</label>
-    <input type="number" id="productId" th:field="${product.id}" readonly>
+    <input type="number" id="productId" th:field="${product.id}">
     <br>
+
+<!--    <select name="product">-->
+<!--        <option th:value="${product.id}"-->
+<!--                th:text="${product.name}">-->
+<!--        </option>-->
+<!--    </select>-->
 
     <label for="quantity">Quantity:</label>
     <input type="number" id="quantity" th:field="*{count}">

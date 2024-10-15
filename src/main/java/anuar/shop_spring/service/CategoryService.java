@@ -16,7 +16,7 @@ public class CategoryService {
 
     public List<Category> getAllCategories() {
         List<Category> categories = new ArrayList<>();
-        categories.addAll(categoryRepository.findAll());
+        categories.addAll(categoryRepository.getAllCategories());
         return categories;
     }
 
