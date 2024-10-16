@@ -24,19 +24,34 @@ public class CartController {
     private final ProductService productService;
     private final UserService userService;
 
+    @GetMapping(path = "/cart")
+    public String getAllCarts(Model model) {
+        List<Cart> carts = cartService.getAllCarts();
+        model.addAttribute("carts", carts);
+
+        Double total = cartService.calculateTotal();
+        model.addAttribute("total", total);
+        return "cart";
+    }
+
     @GetMapping(path = "/addProductForm/{id}")
-    public String addProductToCartForm(@PathVariable("id") Long id, Cart cart, Model model) {
-        Product product = productService.getProductById(id);
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("product", product);
+    public String addProductToCartForm(@PathVariable("id") Long id, Model model) {
+        Cart cart = new Cart();
         model.addAttribute("cart", cart);
+
+        Product product = productService.getProductById(id);
+        cart.setProduct(product);
+        model.addAttribute("product", product);
+
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+
         return "addProductToCart";
     }
 
     @PostMapping(path = "/addProduct")
-    public String addProductToCart(Cart cart, Product product, User user) {
-        cartService.addProductToCart(cart, product, user);
-        return "redirect:/products-list";
+    public String addProductToCart(Cart cart) {
+        cartService.addProductToCart(cart);
+        return "redirect:/cart";
     }
 }

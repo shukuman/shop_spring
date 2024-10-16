@@ -15,9 +15,7 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     public List<Category> getAllCategories() {
-        List<Category> categories = new ArrayList<>();
-        categories.addAll(categoryRepository.getAllCategories());
-        return categories;
+        return categoryRepository.getAllCategories();
     }
 
     public Category getCategoryById(Long id) {

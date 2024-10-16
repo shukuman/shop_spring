@@ -1,8 +1,6 @@
 package anuar.shop_spring.service;
 
 import anuar.shop_spring.entity.Cart;
-import anuar.shop_spring.entity.Product;
-import anuar.shop_spring.entity.User;
 import anuar.shop_spring.repository.CartRepository;
 import anuar.shop_spring.repository.ProductRepository;
 import anuar.shop_spring.repository.UserRepository;
@@ -20,9 +18,19 @@ public class CartService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
 
-    public void addProductToCart(Cart cart, Product product, User user) {
-        cart.setProduct(product);
-        cart.setUser(user);
+    public List<Cart> getAllCarts() {
+        return cartRepository.getAllCarts();
+    }
+
+    public void addProductToCart(Cart cart) {
         cartRepository.save(cart);
+    }
+
+    public double calculateTotal () {
+        double total = 0.0;
+        for (Cart cart : cartRepository.getAllCarts()) {
+            total += cart.getProduct().getPrice() * cart.getCount();
+        }
+        return total;
     }
 }

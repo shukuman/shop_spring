@@ -13,25 +13,23 @@
     <label for="cartId"></label>
     <input type="hidden" id="cartId" th:field="*{id}">
     <br>
-
-    <label for="userId">User ID:</label>
-    <input type="number" id="userId" th:field="${user.id}">
+    <label for="userId">Select User:
+        <select name="user" id="userId">
+            <option th:each="user : ${users}"
+                    th:value="${user.id}"
+                    th:text="${user.firstName}">
+            </option>
+        </select>
+    </label>
     <br>
-
     <label for="productId">Product ID:</label>
-    <input type="number" id="productId" th:field="${product.id}">
+    <input type="number" id="productId"
+           th:text="*{product.name}"
+           th:field="*{product.id}" readonly>
     <br>
-
-<!--    <select name="product">-->
-<!--        <option th:value="${product.id}"-->
-<!--                th:text="${product.name}">-->
-<!--        </option>-->
-<!--    </select>-->
-
     <label for="quantity">Quantity:</label>
     <input type="number" id="quantity" th:field="*{count}">
     <br>
-
     <button type="submit">Add to Cart</button>
 
 </form>

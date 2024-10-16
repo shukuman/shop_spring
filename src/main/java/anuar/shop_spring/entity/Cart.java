@@ -20,10 +20,10 @@ public class Cart {
     private Integer count;
 
     @ManyToOne
-    @JoinTable(name = "users")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinTable(name = "products")
+    @JoinColumn(name = "product_id")
     private Product product;
 }
