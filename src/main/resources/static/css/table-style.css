@@ -57,7 +57,7 @@
 .button-create {
     display: inline-block;
     padding: 10px 10px;
-    background-color: green;
+    background-color: limegreen;
     color: white;
     font-weight: bold;
     border: none;
@@ -67,4 +67,48 @@
 .details {
     color: cornflowerblue;
     text-decoration: underline;
+}
+
+.button-add {
+    display: flex;
+    justify-content: center;
+    padding: 5px 5px;
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+}
+
+.button-shopping {
+    display: inline-block;
+    width: 200px;
+    padding: 5px 5px;
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+}
+
+.button-checkout {
+    display: inline-block;
+    width: 200px;
+    padding: 5px 5px;
+    background-color: limegreen;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+}
+
+.button-cart {
+    display: inline-block;
+    width: 200px;
+    padding: 5px 5px;
+    background-color: coral;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
 }
