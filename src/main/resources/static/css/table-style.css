@@ -82,7 +82,7 @@
 
 .button-shopping {
     display: inline-block;
-    width: 200px;
+    width: 170px;
     padding: 5px 5px;
     background-color: cornflowerblue;
     color: white;
@@ -93,7 +93,7 @@
 
 .button-checkout {
     display: inline-block;
-    width: 200px;
+    width: 170px;
     padding: 5px 5px;
     background-color: limegreen;
     color: white;
@@ -104,7 +104,7 @@
 
 .button-cart {
     display: inline-block;
-    width: 200px;
+    width: 170px;
     padding: 5px 5px;
     background-color: coral;
     color: white;
