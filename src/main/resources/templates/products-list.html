@@ -8,6 +8,7 @@
 
 <body>
 <div>
+    <p style="width: 700px; text-align: end"><a class="button-cart" href="/cart">View Cart</a></p>
     <h2>Products List</h2>
     <table class="table">
 
@@ -25,7 +26,7 @@
         <tr th:each="product : ${products}">
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
-            <td th:text="${product.price} + ' ₸'"></td>
+            <td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
             <td><a class="details" th:href="@{products/{id}(id=${product.id})}">More</a></td>
             <td><a class="button-add" th:href="@{/addProductForm/{id}(id=${product.id})}">Add to Cart</a></td>
         </tr>

@@ -27,7 +27,7 @@
         <tr th:each="product : ${products}">
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
-            <td th:text="${product.price} + ' ₸'"></td>
+            <td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
 
             <td><a class="button-edit" th:href="@{product-update/{id}(id=${product.id})}">Edit</a></td>
             <td><a class="button-delete" th:href="@{product-delete/{id}(id=${product.id})}">Delete</a></td>

@@ -93,7 +93,7 @@
         <td th:text="${productById.id}"></td>
         <td th:text="${productById.category.name}"></td>
         <td th:text="${productById.name}"></td>
-        <td th:text="${productById.price} + ' ₸'"></td>
+        <td th:text="${#numbers.formatDecimal(productById.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
     </tr>
     </tbody>
 </table>
