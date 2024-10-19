@@ -19,6 +19,7 @@
             <th>Product Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Button</th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +27,14 @@
             <td th:text="${cart.product.name}"></td>
             <td th:text="${#numbers.formatDecimal(cart.product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
             <td th:text="${cart.count}"></td>
+            <td>
+                <a href="">
+                    <button type="button">+</button>
+                </a>
+                <a href="">
+                    <button type="button">-</button>
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
