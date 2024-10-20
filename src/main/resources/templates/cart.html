@@ -28,10 +28,11 @@
             <td th:text="${#numbers.formatDecimal(cart.product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
             <td th:text="${cart.count}"></td>
             <td>
-                <a href="">
+                <a th:href="@{/cart/increase/{id}(id=${cart.product.id})}">
                     <button type="button">+</button>
                 </a>
-                <a href="">
+
+                <a th:href="@{/cart/decrease/{id}(id=${cart.product.id})}">
                     <button type="button">-</button>
                 </a>
             </td>

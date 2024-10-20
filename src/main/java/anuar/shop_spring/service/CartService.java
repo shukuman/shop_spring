@@ -22,6 +22,10 @@ public class CartService {
         return cartRepository.getAllCarts();
     }
 
+    public Cart getCartById(Long id) {
+        return cartRepository.findById(id).orElseThrow(null);
+    }
+
     public void addProductToCart(Cart cart) {
         cartRepository.save(cart);
     }
@@ -32,5 +36,26 @@ public class CartService {
             total += cart.getProduct().getPrice() * cart.getCount();
         }
         return total;
+    }
+
+    public void increaseProductQuantity(Long productId) {
+        Cart cart = cartRepository.findByProductId(productId);
+        if (cart != null) {
+            cart.setCount(cart.getCount() + 1);
+            cartRepository.save(cart);
+        }
+    }
+
+    public void decreaseProductQuantity(Long productId) {
+        Cart cart = cartRepository.findByProductId(productId);
+        if (cart != null) {
+            int currentQuantity = cart.getCount();
+            if (currentQuantity > 1) {
+                cart.setCount(currentQuantity - 1);
+                cartRepository.save(cart);
+            } else {
+                cartRepository.delete(cart);
+            }
+        }
     }
 }

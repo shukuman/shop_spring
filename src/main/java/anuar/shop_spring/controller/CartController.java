@@ -54,4 +54,16 @@ public class CartController {
         cartService.addProductToCart(cart);
         return "redirect:/cart";
     }
+
+    @GetMapping("/cart/increase/{id}")
+    public String increaseProductQuantity(@PathVariable("id") Long productId) {
+        cartService.increaseProductQuantity(productId);
+        return "redirect:/cart";
+    }
+
+    @GetMapping("/cart/decrease/{id}")
+    public String decreaseProductQuantity(@PathVariable("id") Long productId) {
+        cartService.decreaseProductQuantity(productId);
+        return "redirect:/cart";
+    }
 }
