@@ -23,7 +23,7 @@ public class CartService {
     }
 
     public Cart getCartById(Long id) {
-        return cartRepository.findById(id).orElseThrow(null);
+        return cartRepository.getCartById(id);
     }
 
     public void addProductToCart(Cart cart) {
