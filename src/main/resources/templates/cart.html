@@ -18,22 +18,20 @@
         <tr>
             <th>Product Name</th>
             <th>Price</th>
-            <th>Quantity</th>
-            <th>Qty ↑↓</th>
+            <th>Qty</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="cart : ${carts}">
             <td th:text="${cart.product.name}"></td>
             <td th:text="${#numbers.formatDecimal(cart.product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
-            <td th:text="${cart.count}"></td>
-            <td>
-                <a th:href="@{/cart/increase/{id}(id=${cart.product.id})}">
-                    <button type="button">+</button>
-                </a>
-
+            <td class="cart-qty">
                 <a th:href="@{/cart/decrease/{id}(id=${cart.product.id})}">
                     <button type="button">-</button>
+                </a>
+                <p th:text="${cart.count}"></p>
+                <a th:href="@{/cart/increase/{id}(id=${cart.product.id})}">
+                    <button type="button">+</button>
                 </a>
             </td>
         </tr>

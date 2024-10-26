@@ -1,5 +1,5 @@
 * {
-    margin: 10px auto;
+    margin: 5px auto;
     text-align: center;
     font-family: sans-serif;
     text-decoration: none;
@@ -111,4 +111,10 @@
     font-weight: bold;
     border: none;
     border-radius: 20px;
+}
+
+.cart-qty {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
