@@ -10,6 +10,7 @@
 <div>
     <p style="width: 700px; text-align: end"><a class="button-cart" href="/cart">Cart</a></p>
     <h2>Products List</h2>
+
     <table class="table">
 
         <thead>
@@ -23,7 +24,8 @@
         </thead>
 
         <tbody>
-        <tr th:each="product : ${products}">
+        <tr th:each="product, iterStat : ${products}"
+            th:if="${iterStat.index >= ((page - 1) * 10)} and ${iterStat.index < (page * 10)}">
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
@@ -33,6 +35,24 @@
         </tbody>
 
     </table>
+
+    <div>
+        <a style="color: cornflowerblue"
+           th:href="@{/products-list(page=${page - 1})}"
+           th:if="${page > 1}">Previous</a>
+
+        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a style="color: cornflowerblue"
+               th:href="@{/products-list(page=${i})}"
+               th:text="${i}">
+            </a>
+        </span>
+
+        <a style="color: cornflowerblue"
+           th:href="@{/products-list(page=${page + 1})}"
+           th:if="${page < totalPages}">Next</a>
+    </div>
+
 </div>
 </body>
 </html>

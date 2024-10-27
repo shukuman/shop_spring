@@ -86,9 +86,17 @@ public class ProductController {
     }
 
     @GetMapping(path = "/products-list")
-    public String showProductsList(Model model) {
+    public String showProductsList(@RequestParam(defaultValue = "1") int page, Model model) {
         List<Product> products = productService.getAllProducts();
+
+        int pageSize = 10;
+        int totalProducts = products.size();
+        int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+
         model.addAttribute("products", products);
+        model.addAttribute("page", page);
+        model.addAttribute("totalPages", totalPages);
+
         return "products-list";
     }
 }
