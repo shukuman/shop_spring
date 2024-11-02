@@ -38,8 +38,9 @@
 
     <div>
         <a style="color: cornflowerblue"
-           th:href="@{/products-list(page=${page - 1})}"
-           th:if="${page > 1}">Previous</a>
+           th:if="${page > 1}"
+           th:href="@{/products-list(page=${page - 1})}">Previous
+        </a>
 
         <span th:each="i : ${#numbers.sequence(1, totalPages)}">
             <a style="color: cornflowerblue"
@@ -49,8 +50,9 @@
         </span>
 
         <a style="color: cornflowerblue"
-           th:href="@{/products-list(page=${page + 1})}"
-           th:if="${page < totalPages}">Next</a>
+           th:if="${page < totalPages}"
+           th:href="@{/products-list(page=${page + 1})}">Next
+        </a>
     </div>
 
 </div>
