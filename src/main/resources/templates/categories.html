@@ -8,30 +8,31 @@
 <body>
 <div>
     <h2> Categories</h2>
-
-    <table class="table">
-
+    <table class="table" style="width: 500px">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>№</th>
             <th>NAME</th>
-            <th></th>
-            <th></th>
+            <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="category : ${categories}">
-            <td th:text="${category.id}"></td>
+        <tr th:each="category, iterStat : ${categories}">
+            <td th:text="${iterStat.count}"></td>
             <td th:text="${category.name}"></td>
-
-            <td><a class="button-edit" th:href="@{category-update/{id}(id=${category.id})}">Edit</a></td>
-            <td><a class="button-delete" th:href="@{category-delete/{id}(id=${category.id})}">Delete</a></td>
+            <td>
+                <a th:href="@{category-update/{id}(id=${category.id})}">
+                    <button class="button-e">Edit</button>
+                </a>
+                <a th:href="@{category-delete/{id}(id=${category.id})}">
+                    <button class="button-d">Delete</button>
+                </a>
+            </td>
         </tr>
         </tbody>
-
     </table>
 </div>
-<p><a class="button-create" href="/category-create">Create category</a></p>
+<a th:href="@{category-create}"><button class="button-c" type="button">Create</button></a>
 </body>
 </html>
