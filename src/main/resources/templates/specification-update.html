@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update specification</title>
+    <link rel="stylesheet" href="/css/table-style.css">
+</head>
+<body>
+
+<form th:method="post" th:action="@{/specification-update}" th:object="${specification}">
+
+    <label for="id"></label>
+    <input type="hidden" th:field="*{id}" id="id">
+    <br>
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name">
+    <br>
+    <label for="category"></label>
+    <input type="hidden" th:field="*{category}" id="category">
+    <br>
+    <input type="submit" value="Update">
+
+</form>
+
+</body>
+</html>

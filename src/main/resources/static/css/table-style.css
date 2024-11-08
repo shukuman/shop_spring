@@ -42,6 +42,60 @@
     border-radius: 20px;
 }
 
+.button-e, .button-d {
+    width: 70px;
+    margin-left: 5px;
+    padding: 5px;
+    background-color: white;
+    color: cornflowerblue;
+    font-size: 16px;
+    font-weight: bold;
+    border-color: cornflowerblue;
+    border-style: solid;
+    border-radius: 15px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-a, .button-c {
+    width: 140px;
+    margin-left: 5px;
+    padding: 5px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-color: cornflowerblue;
+    border-style: solid;
+    border-radius: 15px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-e:hover {
+    background-color: coral;
+    border-color: coral;
+    color: white;
+}
+
+.button-d:hover {
+    background-color: red;
+    border-color: red;
+    color: white;
+}
+
+.button-c:hover {
+    background-color: limegreen;
+    border-color: limegreen;
+    color: white;
+}
+
+.button-a:hover {
+    background-color: white;
+    border-color: cornflowerblue;
+    color: cornflowerblue;
+}
+
 .button-delete {
     display: flex;
     justify-content: center;

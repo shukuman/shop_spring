@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Specifications</title>
+    <link rel="stylesheet" href="css/table-style.css">
+</head>
+<body>
+<div>
+    <h2>Specifications</h2>
+
+    <table class="table" style="width: 700px">
+
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="specification, iterStat : ${specifications}">
+            <td th:text="${iterStat.count}"></td>
+            <td th:text="${specification.name}"></td>
+            <td th:text="${specification.category.name}"></td>
+
+            <td>
+                <a th:href="@{specification-update/{id}(id=${specification.id})}">
+                    <button class="button-e" type="button">Edit</button>
+                </a>
+                <a th:href="@{specification-delete/{id}(id=${specification.id})}">
+                    <button class="button-d" type="button">Delete</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<a th:href="@{specification-create}"><button class="button-c" type="button">Create</button></a>
+</body>
+</html>

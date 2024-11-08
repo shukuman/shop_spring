@@ -1,6 +1,8 @@
 package anuar.shop_spring.service;
 
+import anuar.shop_spring.entity.Category;
 import anuar.shop_spring.entity.Specification;
+import anuar.shop_spring.repository.CategoryRepository;
 import anuar.shop_spring.repository.SpecificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,15 +15,14 @@ import java.util.List;
 public class SpecificationService {
 
     private final SpecificationRepository specificationRepository;
+    private final CategoryRepository categoryRepository;
 
     public List<Specification> getAllSpecifications() {
-        List<Specification> specifications = new ArrayList<>();
-        specifications.addAll(specificationRepository.findAll());
-        return specifications;
+        return specificationRepository.getAllSpecifications();
     }
 
     public Specification getSpecificationById(Long id) {
-        return specificationRepository.findById(id).orElseThrow(null);
+        return specificationRepository.getSpecificationById(id);
     }
 
     public void saveSpecification(Specification specification) {
@@ -30,5 +31,12 @@ public class SpecificationService {
 
     public void deleteSpecificationById(Long id) {
         specificationRepository.deleteById(id);
+    }
+
+    public void addSpecToCategory(Long categoryId, Long specId) {
+        Category category = categoryRepository.getCategoryById(categoryId);
+        Specification specification = specificationRepository.getSpecificationById(specId);
+        specification.setCategory(category);
+        specificationRepository.save(specification);
     }
 }
