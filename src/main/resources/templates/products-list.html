@@ -8,17 +8,19 @@
 
 <body>
 <div>
-    <p style="width: 700px; text-align: end"><a class="button-cart" href="/cart">Cart</a></p>
+    <a href="/cart">
+        <button class="button-e" style="width: 100px">Cart</button>
+    </a>
     <h2>Products List</h2>
 
     <table class="table">
 
         <thead>
         <tr>
-            <th>ID</th>
+            <th>№</th>
             <th>NAME</th>
             <th>PRICE</th>
-            <th>Product info</th>
+            <th>Info</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -26,30 +28,38 @@
         <tbody>
         <tr th:each="product, iterStat : ${products}"
             th:if="${iterStat.index >= ((page - 1) * 10)} and ${iterStat.index < (page * 10)}">
-            <td th:text="${product.id}"></td>
+            <td th:text="${iterStat.count}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
-            <td><a class="details" th:href="@{products/{id}(id=${product.id})}">More</a></td>
-            <td><a class="button-add" th:href="@{/addProductForm/{id}(id=${product.id})}">Add to Cart</a></td>
+            <td>
+                <a th:href="@{products/{id}(id=${product.id})}">
+                    <button class="button-a" style="width: 90px;">Details</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/addProductForm/{id}(id=${product.id})}">
+                    <button class="button-c">Add to Cart</button>
+                </a>
+            </td>
         </tr>
         </tbody>
 
     </table>
 
     <div>
-        <a style="color: cornflowerblue"
+        <a style="color: cornflowerblue; font-weight: bold"
            th:if="${page > 1}"
            th:href="@{/products-list(page=${page - 1})}">Previous
         </a>
 
         <span th:each="i : ${#numbers.sequence(1, totalPages)}">
-            <a style="color: cornflowerblue"
+            <a style="color: cornflowerblue; font-weight: bold"
                th:href="@{/products-list(page=${i})}"
                th:text="${i}">
             </a>
         </span>
 
-        <a style="color: cornflowerblue"
+        <a style="color: cornflowerblue; font-weight: bold"
            th:if="${page < totalPages}"
            th:href="@{/products-list(page=${page + 1})}">Next
         </a>

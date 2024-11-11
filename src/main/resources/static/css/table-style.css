@@ -8,7 +8,7 @@
 .table {
     border-collapse: collapse;
     table-layout: auto;
-    width: 700px;
+    width: 600px;
     border: 1px solid cornflowerblue;
 }
 
@@ -30,22 +30,10 @@
     background: #efefef;
 }
 
-.button-edit {
-    display: flex;
-    justify-content: center;
-    width: 50px;
-    padding: 5px 10px;
-    background-color: coral;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
-}
-
 .button-e, .button-d {
     width: 70px;
     margin-left: 5px;
-    padding: 5px;
+    padding: 3px;
     background-color: white;
     color: cornflowerblue;
     font-size: 16px;
@@ -60,7 +48,7 @@
 .button-a, .button-c {
     width: 140px;
     margin-left: 5px;
-    padding: 5px;
+    padding: 3px;
     background-color: cornflowerblue;
     color: white;
     font-size: 16px;
@@ -96,42 +84,9 @@
     color: cornflowerblue;
 }
 
-.button-delete {
-    display: flex;
-    justify-content: center;
-    width: 50px;
-    padding: 5px 10px;
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
-}
-
-.button-create {
-    display: inline-block;
-    padding: 10px 10px;
-    background-color: limegreen;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
-}
-
 .details {
     color: cornflowerblue;
     text-decoration: underline;
-}
-
-.button-add {
-    display: flex;
-    justify-content: center;
-    padding: 5px 5px;
-    background-color: cornflowerblue;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
 }
 
 .button-shopping {
@@ -150,17 +105,6 @@
     width: 170px;
     padding: 5px 5px;
     background-color: limegreen;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
-}
-
-.button-cart {
-    display: inline-block;
-    width: 170px;
-    padding: 5px 5px;
-    background-color: coral;
     color: white;
     font-weight: bold;
     border: none;

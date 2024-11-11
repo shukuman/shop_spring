@@ -32,9 +32,17 @@ public class ProductController {
     private final CategoryService categoryService;
 
     @GetMapping(path = "/products")
-    public String showAllProducts(Model model) {
+    public String showAllProducts(@RequestParam(defaultValue = "1") int page, Model model) {
         List<Product> products = productService.getAllProducts();
+
+        int pageSize = 10;
+        int totalProducts = products.size();
+        int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+
+        model.addAttribute("page", page);
+        model.addAttribute("totalPages", totalPages);
         model.addAttribute("products", products);
+
         return "products";
     }
 

@@ -12,21 +12,31 @@
 <div>
     <form th:method="post" th:action="@{/product-create}" th:object="${product}">
 
-        <select name="category">
+        <label for="category"></label>
+        <select name="category" style="width:170px">
+            <option value="true" disabled selected>Select category</option>
             <option th:each="category : ${categories}"
                     th:value="${category.id}"
                     th:text="${category.name}">
             </option>
         </select>
         <br>
-        <label for="name">Name</label>
-        <input type="text" th:field="*{name}" id="name">
+
+        <label for="name">Enter name:</label>
         <br>
-        <label for="price">Price</label>
-        <input type="number" th:field="*{price}" id="price">
+        <input type="text" th:field="*{name}" id="name" width="200px" placeholder="name">
         <br>
+
+        <label for="price">Enter price:</label>
+        <br>
+        <input type="number" th:field="*{price}"
+               id="price" width="200px"
+               min="1"
+               placeholder="price">
+        <br>
+
         <label for="submit"></label>
-        <input type="submit" value="Create" id="submit">
+        <input type="submit" value="Create" id="submit" class="button-c">
 
     </form>
 </div>

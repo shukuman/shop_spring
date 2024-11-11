@@ -13,15 +13,17 @@
     <label for="name">Name</label>
     <input type="text" th:field="*{name}" id="name">
     <br>
+
     <label for="price">Price</label>
     <input type="number" th:field="*{price}" id="price">
     <br>
+
     <label for="id"></label>
     <input type="hidden" th:field="*{id}" id="id">
-    <br>
+
     <label for="category"></label>
     <input type="hidden" th:field="*{category.id}" id="category">
-    <br>
+
     <input type="submit" value="Update">
 
 </form>
