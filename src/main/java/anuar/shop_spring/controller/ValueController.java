@@ -38,10 +38,10 @@ public class ValueController {
         return "redirect:/values";
     }
 
-    @GetMapping(path = "/value-delete/{id}")
+    @GetMapping(path = "/products/value-delete/{id}")
     public String deleteValue(@PathVariable("id") Long id) {
         valueService.deleteValueById(id);
-        return "redirect:/values";
+        return "redirect:/products";
     }
 
     @GetMapping(path = "/products/value-update/{id}")
