@@ -15,13 +15,11 @@ public class ValueService {
     private final ValueRepository valueRepository;
 
     public List<Value> getAllValues() {
-        List<Value> values = new ArrayList<>();
-        values.addAll(valueRepository.findAll());
-        return values;
+        return valueRepository.getAllValues();
     }
 
     public Value getValueById(Long id) {
-        return valueRepository.findById(id).orElseThrow(null);
+        return valueRepository.getValueById(id);
     }
 
     public void saveValue(Value value) {

@@ -29,7 +29,7 @@ public class ValueController {
     @GetMapping(path = "/value-create")
     public String createValueForm(Value value, Model model) {
         model.addAttribute("value", value);
-        return "value-create";
+        return "value-update";
     }
 
     @PostMapping(path = "/value-create")
@@ -44,16 +44,16 @@ public class ValueController {
         return "redirect:/values";
     }
 
-    @GetMapping(path = "/value-update/{id}")
+    @GetMapping(path = "/products/value-update/{id}")
     public String updateValueForm(@PathVariable("id") Long id, Model model) {
         Value value = valueService.getValueById(id);
         model.addAttribute("value", value);
         return "value-update";
     }
 
-    @PostMapping(path = "/value-update")
+    @PostMapping(path = "/products/value-update/{id}")
     public String updateValue(Value value) {
         valueService.saveValue(value);
-        return "redirect:/values";
+        return "redirect:/products";
     }
 }
