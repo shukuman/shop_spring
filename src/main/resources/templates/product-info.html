@@ -34,24 +34,6 @@
             height: 50px;
         }
 
-        .specifications {
-            display: flex;
-            flex-direction: row;
-            width: 550px;
-            font-weight: bold;
-        }
-
-        .specifications thead td {
-            height: 25px;
-        }
-
-        .specifications tbody td {
-            border-bottom: 2px solid cornflowerblue;
-            width: 250px;
-            height: 25px;
-            font-weight: lighter;
-        }
-
         .reviews {
             border-collapse: collapse;
             table-layout: fixed;
@@ -97,17 +79,25 @@
     </tr>
     </tbody>
 </table>
-
+<a th:href="@{/products/{id}/add-value(id=${productById.id})}">Add Value</a>
 <table class="specifications">
     <thead>
-    <tr th:each="specification : ${productById.category.getSpecifications()}">
-        <td th:text="${specification.name}"></td>
+    <tr>
+        <th>Specification</th>
+        <th>Value</th>
+        <th>Action</th>
     </tr>
     </thead>
 
     <tbody>
-    <tr th:each="value : ${productById.values}">
+    <tr th:each="value : ${productById.getValues()}">
+        <td th:text="${value.getSpecification().name}"></td>
         <td th:text="${value.name}"></td>
+        <td>
+            <a th:href="@{value-update/{id}(id=${value.id})}">
+                <button class="button-e">Edit</button>
+            </a>
+        </td>
     </tr>
     </tbody>
 </table>

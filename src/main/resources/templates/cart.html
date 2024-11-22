@@ -16,13 +16,15 @@
     <table class="table" style="width: 500px">
         <thead>
         <tr>
-            <th>Product Name</th>
+            <th>№</th>
+            <th>Product</th>
             <th>Price</th>
             <th>Qty</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="cart : ${carts}">
+        <tr th:each="cart, iterStat : ${carts}">
+            <td th:text="${iterStat.count}"></td>
             <td th:text="${cart.product.name}"></td>
             <td th:text="${#numbers.formatDecimal(cart.product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
             <td class="cart-qty">

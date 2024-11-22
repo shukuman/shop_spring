@@ -1,12 +1,7 @@
 package anuar.shop_spring.controller;
 
-import anuar.shop_spring.entity.Category;
-import anuar.shop_spring.entity.Product;
-import anuar.shop_spring.entity.Review;
-import anuar.shop_spring.service.CartService;
-import anuar.shop_spring.service.CategoryService;
-import anuar.shop_spring.service.ProductService;
-import anuar.shop_spring.service.ReviewService;
+import anuar.shop_spring.entity.*;
+import anuar.shop_spring.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
@@ -30,6 +25,10 @@ public class ProductController {
     private final CartService cartService;
 
     private final CategoryService categoryService;
+
+    private final ValueService valueService;
+
+    private final SpecificationService specificationService;
 
     @GetMapping(path = "/products")
     public String showAllProducts(@RequestParam(defaultValue = "1") int page, Model model) {
@@ -106,5 +105,30 @@ public class ProductController {
         model.addAttribute("totalPages", totalPages);
 
         return "products-list";
+    }
+
+    @GetMapping(path = "/products/{id}/add-value")
+    public String showAddValueForm(@PathVariable("id") Long productId, Value value, Model model) {
+        Product product = productService.getProductById(productId);
+        Long categoryId = product.getCategory().getId();
+        List<Specification> specifications = specificationService.getSpecificationsByCategoryId(categoryId);
+
+        model.addAttribute("product", product);
+        model.addAttribute("specifications", specifications);
+        model.addAttribute("value", value);
+        return "add-value";
+    }
+
+    @PostMapping(path = "/products/{id}/add-value")
+    public String addValue(@PathVariable("id") Long productId,
+                           @RequestParam("specificationId") Long specificationId,
+                           Value value) {
+        Product product = productService.getProductById(productId);
+        Specification specification = specificationService.getSpecificationById(specificationId);
+        value.setProduct(product);
+        value.setSpecification(specification);
+        value.setId(null);
+        valueService.saveValue(value);
+        return "redirect:/products/" + productId;
     }
 }

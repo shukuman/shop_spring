@@ -14,9 +14,9 @@
 
         <thead>
         <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>PRICE</th>
+            <th>№</th>
+            <th>Name</th>
+            <th>Price</th>
             <th>Info</th>
             <th>Action</th>
         </tr>
@@ -30,7 +30,7 @@
             <td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
             <td>
                 <a th:href="@{products/{id}(id=${product.id})}">
-                    <button class="button-a" style="width: 90px;">Details</button>
+                    <button class="button-info" style="width: 90px;">Details</button>
                 </a>
             </td>
             <td>
