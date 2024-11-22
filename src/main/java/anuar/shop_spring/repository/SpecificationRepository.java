@@ -14,4 +14,6 @@ public interface SpecificationRepository extends JpaRepository <Specification, L
 
     @Query("select s from Specification s where s.id = :specificationId")
     Specification getSpecificationById(@Param("specificationId") Long specificationId);
+
+    List<Specification> getSpecificationsByCategoryId(Long categoryId);
 }

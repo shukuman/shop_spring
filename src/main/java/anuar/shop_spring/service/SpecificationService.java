@@ -39,4 +39,8 @@ public class SpecificationService {
         specification.setCategory(category);
         specificationRepository.save(specification);
     }
+
+    public List<Specification> getSpecificationsByCategoryId(Long categoryId) {
+        return specificationRepository.getSpecificationsByCategoryId(categoryId);
+    }
 }
