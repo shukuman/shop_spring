@@ -26,6 +26,25 @@
     padding: 8px;
 }
 
+.specifications {
+    table-layout: auto;
+    width: 600px;
+    border-collapse: collapse;
+}
+
+.specifications th {
+    font-size: 16px;
+    font-weight: bold;
+    color: cornflowerblue;
+    border-bottom: 1px solid black;
+}
+
+.specifications td {
+    font-size: 16px;
+    font-weight: lighter;
+    border-bottom: 1px solid black;
+}
+
 .table tr:nth-child(even){
     background: #efefef;
 }
@@ -34,8 +53,8 @@
     width: 70px;
     margin-left: 5px;
     padding: 3px;
-    background-color: white;
-    color: cornflowerblue;
+    background-color: cornflowerblue;
+    color: white;
     font-size: 16px;
     font-weight: bold;
     border-color: cornflowerblue;
@@ -51,6 +70,21 @@
     padding: 3px;
     background-color: cornflowerblue;
     color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-color: cornflowerblue;
+    border-style: solid;
+    border-radius: 15px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-info {
+    width: 140px;
+    margin-left: 5px;
+    padding: 3px;
+    background-color: white;
+    color: cornflowerblue;
     font-size: 16px;
     font-weight: bold;
     border-color: cornflowerblue;
@@ -84,9 +118,10 @@
     color: cornflowerblue;
 }
 
-.details {
-    color: cornflowerblue;
-    text-decoration: underline;
+.button-info:hover {
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    color: white;
 }
 
 .button-shopping {

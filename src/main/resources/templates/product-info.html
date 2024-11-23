@@ -3,64 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Product info</title>
-    <style>
-
-        * {
-            margin: 20px auto;
-            text-align: center;
-            font-family: sans-serif;
-            font-size: 1rem;
-        }
-
-        .info {
-            border-collapse: collapse;
-            table-layout: auto;
-            width: 550px;
-            border: 2px solid cornflowerblue;
-            text-align: center;
-        }
-
-        .info th {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            padding: 8px;
-            background: cornflowerblue;
-        }
-
-        .info td {
-            font-size: 16px;
-            font-weight: bold;
-            height: 50px;
-        }
-
-        .reviews {
-            border-collapse: collapse;
-            table-layout: fixed;
-            width: 550px;
-        }
-
-        .reviews th {
-            border-bottom: 2px solid cornflowerblue;
-        }
-
-        .reviews td {
-            border-bottom: 1px solid black;
-            height: 50px;
-        }
-
-        .rating {
-            width: 550px;
-            text-align: end;
-            color: cornflowerblue;
-            font-weight: bold;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/css/table-style.css">
 </head>
 <body>
-
-<table class="info">
+<h2>Product Info</h2>
+<table class="table">
     <thead>
     <tr>
         <th>ID</th>
@@ -79,19 +26,13 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{/products/{id}/add-value(id=${productById.id})}">Add Value</a>
-<table class="specifications">
-    <thead>
-    <tr>
-        <th>Specification</th>
-        <th>Value</th>
-        <th>Action</th>
-    </tr>
-    </thead>
+<br>
 
+<h3 style="border-bottom: 1px solid black; width: 600px">Specifications</h3>
+<table class="specifications">
     <tbody>
     <tr th:each="value : ${productById.getValues()}">
-        <td th:text="${value.getSpecification().name}"></td>
+        <th th:text="${value.getSpecification().name}"></th>
         <td th:text="${value.name}"></td>
         <td>
             <a th:href="@{value-update/{id}(id=${value.id})}">
@@ -104,24 +45,40 @@
     </tr>
     </tbody>
 </table>
+<a th:href="@{/products/{id}/add-value(id=${productById.id})}">
+    <button class="button-info" style="width: 160px">Add specification</button>
+</a>
+<br>
+<br>
+<table>
+    <tbody>
+    <tr>
+        <td style="width: 300px; font-weight: bold"><h3>Reviews</h3></td>
+        <td th:text="'Average rating: ' + ${average}" style="width: 300px; font-weight: bold"></td>
+    </tr>
+    </tbody>
+</table>
 
-<div style="font-size: 18px; font-weight: bold">REVIEWS</div>
-<div class="rating" th:text="'Average rating: ' + ${average}"></div>
-
-<table class="reviews">
+<table class="specifications">
     <thead>
     <tr>
         <th>Comment</th>
         <th>Assessment</th>
-        <th>User</th>
+        <th>Status</th>
+        <th>Action</th>
     </tr>
     </thead>
 
     <tbody>
     <tr th:each="review : ${reviewsByProductIdAndStatus}">
         <td th:text="${review.comment}"></td>
-        <td th:text="${review.assessment}"></td>
-        <td th:text="${review.user.firstName}"></td>
+        <td>
+            <span th:text="${review.user.firstName}">★</span>
+            <br>
+            <span th:each="i : ${#numbers.sequence(1, review.assessment)}">★</span>
+        </td>
+        <td th:text="${review.status}"></td>
+        <td><button class="button-info">Publish</button></td>
     </tr>
     </tbody>
 </table>
