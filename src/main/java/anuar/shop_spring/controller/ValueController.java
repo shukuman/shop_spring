@@ -40,8 +40,9 @@ public class ValueController {
 
     @GetMapping(path = "/products/value-delete/{id}")
     public String deleteValue(@PathVariable("id") Long id) {
+        Long productId = valueService.getValueById(id).getProduct().getId();
         valueService.deleteValueById(id);
-        return "redirect:/products";
+        return "redirect:/products/" + productId;
     }
 
     @GetMapping(path = "/products/value-update/{id}")
@@ -52,8 +53,9 @@ public class ValueController {
     }
 
     @PostMapping(path = "/products/value-update/{id}")
-    public String updateValue(Value value) {
+    public String updateValue(@PathVariable("id") Long id, Value value) {
+        Long productId = valueService.getValueById(id).getProduct().getId();
         valueService.saveValue(value);
-        return "redirect:/products";
+        return "redirect:/products/"+ productId;
     }
 }
