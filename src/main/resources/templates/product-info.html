@@ -28,13 +28,14 @@
 </table>
 <br>
 
-<h3 style="border-bottom: 1px solid black; width: 600px">Specifications</h3>
+
 <table class="specifications">
+    <h3 style="border-bottom: 2px solid black; width: 600px; text-align: start">Specifications</h3>
     <tbody>
     <tr th:each="value : ${productById.getValues()}">
-        <th th:text="${value.getSpecification().name}"></th>
-        <td th:text="${value.name}"></td>
-        <td>
+        <th th:text="${value.getSpecification().name}" style="text-align: start"></th>
+        <td th:text="${value.name}" style="text-align: start"></td>
+        <td style="text-align: end">
             <a th:href="@{value-update/{id}(id=${value.id})}">
                 <button class="button-e">Edit</button>
             </a>
@@ -50,38 +51,29 @@
 </a>
 <br>
 <br>
-<table>
+<table style="border-bottom: 2px solid black">
     <tbody>
     <tr>
-        <td style="width: 300px; font-weight: bold"><h3>Reviews</h3></td>
-        <td th:text="'Average rating: ' + ${average}" style="width: 300px; font-weight: bold"></td>
+        <td style="width: 300px"><h3 style="text-align: start">Reviews</h3></td>
+        <td th:text="'Average rating: ' + ${average}" style="width: 300px; font-weight: bold; text-align: end"></td>
     </tr>
     </tbody>
 </table>
 
-<table class="specifications">
-    <thead>
-    <tr>
-        <th>Comment</th>
-        <th>Assessment</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-
+<table class="reviews">
     <tbody>
     <tr th:each="review : ${reviewsByProductIdAndStatus}">
         <td th:text="${review.comment}"></td>
-        <td>
-            <span th:text="${review.user.firstName}">★</span>
+        <td style="text-align: end">
+            <span th:text="${review.user.firstName}"></span>
             <br>
-            <span th:each="i : ${#numbers.sequence(1, review.assessment)}">★</span>
+            <span th:each="i : ${#numbers.sequence(1, review.assessment)}" style="color: cornflowerblue">★</span>
         </td>
-        <td th:text="${review.status}"></td>
-        <td><button class="button-info">Publish</button></td>
     </tr>
     </tbody>
 </table>
-
+<a th:href="@{/products/{id}/add-value(id=${productById.id})}">
+    <button class="button-info" style="width: 160px">Edit reviews</button>
+</a>
 </body>
 </html>
