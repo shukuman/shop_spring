@@ -1,6 +1,8 @@
 package anuar.shop_spring.controller;
 
+import anuar.shop_spring.entity.Product;
 import anuar.shop_spring.entity.Review;
+import anuar.shop_spring.service.ProductService;
 import anuar.shop_spring.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,12 +17,23 @@ import java.util.List;
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final ProductService productService;
 
     @GetMapping(path = "/reviews")
     public String showAllReviews(Model model) {
         List<Review> reviews = reviewService.getAllReviews();
         model.addAttribute("reviews", reviews);
         return "reviews";
+    }
+
+    @GetMapping(path = "/reviewsByProductId/{id}")
+    public String showReviewsByProductId(@PathVariable("id") Long productId, Model model) {
+        Product productByID = productService.getProductById(productId);
+        List<Review> reviewsByProductId = reviewService.getAllReviewsByProductId(productId);
+
+        model.addAttribute("productById", productByID);
+        model.addAttribute("reviewsByProductId", reviewsByProductId);
+        return "reviewsByProductId";
     }
 
     @GetMapping(path = "/review-create")

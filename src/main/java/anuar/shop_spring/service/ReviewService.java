@@ -26,6 +26,10 @@ public class ReviewService {
         return reviewRepository.getReviewsByProductIdAndStatus(id, status);
     }
 
+    public List<Review> getAllReviewsByProductId(Long id) {
+        return reviewRepository.getReviewsByProductId(id);
+    }
+
     public Review getReviewById(Long id) {
         return reviewRepository.findById(id).orElseThrow(null);
     }
