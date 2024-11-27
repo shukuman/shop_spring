@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+    <link rel="stylesheet" href="/css/table-style.css">
+</head>
+<body>
+<h2> Reviews on product: <span th:text="${productById.name}"></span></h2>
+<table class="table" style="width: 1000px">
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Comment</th>
+        <th>User</th>
+        <th>Assessment</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="review, iterStat : ${reviewsByProductId}">
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${review.comment}"></td>
+        <td th:text="${review.user.firstName}">
+        <td><span th:each="i : ${#numbers.sequence(1, review.assessment)}" style="color: cornflowerblue">★</span></td>
+        <th:block th:switch="${review.status}">
+            <td th:case="true"><p>Published</p></td>
+            <td th:case="false"><p>Unpublished</p></td>
+        </th:block>
+<!--        <td>-->
+<!--            <a th:href="@{category-update/{id}(id=${category.id})}">-->
+<!--                <button class="button-e">Edit</button>-->
+<!--            </a>-->
+<!--            <a th:href="@{category-delete/{id}(id=${category.id})}">-->
+<!--                <button class="button-d">Delete</button>-->
+<!--            </a>-->
+<!--        </td>-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
