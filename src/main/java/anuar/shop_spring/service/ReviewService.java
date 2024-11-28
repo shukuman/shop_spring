@@ -17,9 +17,7 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
 
     public List<Review> getAllReviews() {
-        List<Review> reviews = new ArrayList<>();
-        reviews.addAll(reviewRepository.findAll());
-        return reviews;
+        return reviewRepository.findAll();
     }
 
     public List<Review> getAllReviewsByStatus(Long id, Boolean status) {
@@ -31,7 +29,13 @@ public class ReviewService {
     }
 
     public Review getReviewById(Long id) {
-        return reviewRepository.findById(id).orElseThrow(null);
+        return reviewRepository.getReviewById(id);
+    }
+
+    public void setReviewStatus(Long id, boolean status) {
+        Review review = reviewRepository.getReviewById(id);
+        review.setStatus(status);
+        reviewRepository.save(review);
     }
 
     public void saveReview(Review review) {

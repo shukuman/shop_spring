@@ -49,9 +49,25 @@ public class ReviewController {
     }
 
     @GetMapping(path = "/review-delete/{id}")
-    public String deleteReview(@PathVariable("id") Long id) {
+    public String deleteReview(@PathVariable("id") Long id,
+                               @RequestParam("productId") Long productId) {
         reviewService.deleteReviewById(id);
-        return "redirect:/reviews";
+        return "redirect:/reviewsByProductId/" + productId;
+    }
+
+//    @GetMapping(path = "/review-status/{id}")
+//    public String setReviewStatus(@PathVariable("id") Long id, Model model) {
+//        Review review = reviewService.getReviewById(id);
+//        model.addAttribute("review", review);
+//        return "redirect:/review-status";
+//    }
+
+    @GetMapping(path = "/review-status/{id}")
+    public String setReviewStatus(@PathVariable("id") Long reviewId,
+                                  @RequestParam("productId") Long productId,
+                                  @RequestParam("status") boolean status) {
+        reviewService.setReviewStatus(reviewId, status);
+        return "redirect:/reviewsByProductId/" + productId;
     }
 
     @GetMapping(path = "/review-update/{id}")
