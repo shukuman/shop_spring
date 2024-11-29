@@ -114,6 +114,20 @@
     cursor: pointer;
 }
 
+.button-status {
+    width: 120px;
+    padding: 3px;
+    background-color: white;
+    color: cornflowerblue;
+    font-size: 16px;
+    font-weight: bold;
+    border-color: cornflowerblue;
+    border-style: solid;
+    border-radius: 15px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
 .button-e:hover {
     background-color: coral;
     border-color: coral;
@@ -139,6 +153,12 @@
 }
 
 .button-info:hover {
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    color: white;
+}
+
+.button-status:hover {
     background-color: cornflowerblue;
     border-color: cornflowerblue;
     color: white;

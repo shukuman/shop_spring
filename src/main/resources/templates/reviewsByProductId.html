@@ -7,13 +7,14 @@
 </head>
 <body>
 <h2> Reviews on product: <span th:text="${productById.name}"></span></h2>
-<table class="table" style="width: 900px">
+<br>
+<table class="table" style="width: 800px">
     <thead>
     <tr>
         <th>№</th>
         <th>Comment</th>
         <th>User</th>
-        <th>Assessment</th>
+        <th>Rating</th>
         <th>Status</th>
         <th>Action</th>
     </tr>
@@ -25,16 +26,18 @@
         <td th:text="${review.user.firstName}">
         <td><span th:each="i : ${#numbers.sequence(1, review.assessment)}" style="color: cornflowerblue">★</span></td>
         <th:block th:switch="${review.status}">
-            <td th:case="true"><p>Published</p></td>
-            <td th:case="false"><p>Unpublished</p></td>
+            <td th:case="true">
+                <a th:href="@{/review-status/{id}(id=${review.id}, productId=${productById.id}, status=false)}">
+                    <button class="button-status">Published</button>
+                </a>
+            </td>
+            <td th:case="false">
+                <a th:href="@{/review-status/{id}(id=${review.id}, productId=${productById.id}, status=true)}">
+                    <button class="button-status">Unpublished</button>
+                </a>
+            </td>
         </th:block>
         <td>
-            <a th:href="@{/review-status/{id}(id=${review.id}, productId=${productById.id}, status=true)}">
-                <button>Publish</button>
-            </a>
-            <a th:href="@{/review-status/{id}(id=${review.id}, productId=${productById.id}, status=false)}">
-                <button>Unpublish</button>
-            </a>
             <a th:href="@{/review-delete/{id}(id=${review.id}, productId=${productById.id})}">
                 <button class="button-d">Delete</button>
             </a>
@@ -42,6 +45,8 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{/products/{id}(id=${productById.id})}" style="color: cornflowerblue">< Back</a>
+<div style="text-align: start; width: 800px;">
+    <a th:href="@{/products/{id}(id=${productById.id})}" style="color: cornflowerblue">< Back</a>
+</div>
 </body>
 </html>

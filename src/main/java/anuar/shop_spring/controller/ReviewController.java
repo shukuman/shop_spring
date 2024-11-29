@@ -55,13 +55,6 @@ public class ReviewController {
         return "redirect:/reviewsByProductId/" + productId;
     }
 
-//    @GetMapping(path = "/review-status/{id}")
-//    public String setReviewStatus(@PathVariable("id") Long id, Model model) {
-//        Review review = reviewService.getReviewById(id);
-//        model.addAttribute("review", review);
-//        return "redirect:/review-status";
-//    }
-
     @GetMapping(path = "/review-status/{id}")
     public String setReviewStatus(@PathVariable("id") Long reviewId,
                                   @RequestParam("productId") Long productId,
