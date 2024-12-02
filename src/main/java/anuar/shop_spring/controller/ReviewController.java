@@ -2,8 +2,10 @@ package anuar.shop_spring.controller;
 
 import anuar.shop_spring.entity.Product;
 import anuar.shop_spring.entity.Review;
+import anuar.shop_spring.entity.User;
 import anuar.shop_spring.service.ProductService;
 import anuar.shop_spring.service.ReviewService;
+import anuar.shop_spring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ public class ReviewController {
 
     private final ReviewService reviewService;
     private final ProductService productService;
+    private final UserService userService;
 
     @GetMapping(path = "/reviews")
     public String showAllReviews(Model model) {
@@ -36,16 +39,25 @@ public class ReviewController {
         return "reviewsByProductId";
     }
 
-    @GetMapping(path = "/review-create")
-    public String createReviewForm(Review review, Model model) {
+    @GetMapping(path = "/review-create/{id}")
+    public String createReviewForm(@PathVariable("id") Long productId, Model model) {
+        Review review = new Review();
         model.addAttribute("review", review);
+
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+
+        Product product = productService.getProductById(productId);
+        review.setProduct(product);
+
         return "review-create";
     }
 
     @PostMapping(path = "/review-create")
     public String createReview(Review review) {
+        Long productId = review.getProduct().getId();
         reviewService.saveReview(review);
-        return "redirect:/reviews";
+        return "redirect:/reviewsByProductId/" + productId;
     }
 
     @GetMapping(path = "/review-delete/{id}")

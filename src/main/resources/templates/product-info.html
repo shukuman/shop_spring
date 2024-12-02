@@ -71,6 +71,9 @@
     </tr>
     </tbody>
 </table>
+<a th:href="@{/review-create/{id}(id=${productById.id})}">
+    <button class="button-info" style="width: 160px">Add review</button>
+</a>
 <a th:href="@{/reviewsByProductId/{id}(id=${productById.id})}">
     <button class="button-info" style="width: 160px">Edit reviews</button>
 </a>

@@ -126,10 +126,4 @@ public class ProductController {
         valueService.saveValue(value);
         return "redirect:/products/" + productId;
     }
-
-//    @GetMapping(path = "/review-delete/{id}")
-//    public String deleteReview(@PathVariable("id") Long id) {
-//        reviewService.deleteReviewById(id);
-//        return "redirect:/reviews";
-//    }
 }

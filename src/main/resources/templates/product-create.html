@@ -12,9 +12,9 @@
 <div>
     <form th:method="post" th:action="@{/product-create}" th:object="${product}">
 
-        <label for="category"></label>
-        <select name="category" style="width:170px">
-            <option value="true" disabled selected>Select category</option>
+        <label for="category">Select category:</label>
+        <select name="category" id="category" style="width:170px">
+            <option value="true" disabled selected></option>
             <option th:each="category : ${categories}"
                     th:value="${category.id}"
                     th:text="${category.name}">
@@ -23,16 +23,13 @@
         <br>
 
         <label for="name">Enter name:</label>
-        <br>
-        <input type="text" th:field="*{name}" id="name" width="200px" placeholder="name">
+        <input type="text" th:field="*{name}" id="name" width="200px">
         <br>
 
         <label for="price">Enter price:</label>
-        <br>
         <input type="number" th:field="*{price}"
                id="price" width="200px"
-               min="1"
-               placeholder="price">
+               min="1">
         <br>
 
         <label for="submit"></label>
