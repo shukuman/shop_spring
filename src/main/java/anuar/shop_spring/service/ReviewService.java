@@ -45,4 +45,8 @@ public class ReviewService {
     public void deleteReviewById(Long id) {
         reviewRepository.deleteById(id);
     }
+
+    public boolean reviewExistsByProductAndUser(Long productId, Long userId) {
+        return reviewRepository.existsByProductIdAndUserId(productId, userId);
+    }
 }

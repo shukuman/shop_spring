@@ -56,7 +56,14 @@ public class ReviewController {
     @PostMapping(path = "/review-create")
     public String createReview(Review review) {
         Long productId = review.getProduct().getId();
+        Long userId = review.getUser().getId();
+
+        boolean reviewExists = reviewService.reviewExistsByProductAndUser(productId, userId);
+        if(reviewExists) {
+            return "error";
+        }
         reviewService.saveReview(review);
+
         return "redirect:/reviewsByProductId/" + productId;
     }
 

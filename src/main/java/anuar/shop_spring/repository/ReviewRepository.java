@@ -17,4 +17,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     @Query("select r from Review r where r.product.id = :id order by r.id")
     List<Review> getReviewsByProductId(@Param("id") Long id);
+
+    boolean existsByProductIdAndUserId(Long productId, Long userId);
 }
