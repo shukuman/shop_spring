@@ -19,6 +19,7 @@
             <th>№</th>
             <th>Product</th>
             <th>Price</th>
+            <th>User</th>
             <th>Qty</th>
         </tr>
         </thead>
@@ -27,6 +28,7 @@
             <td th:text="${iterStat.count}"></td>
             <td th:text="${cart.product.name}"></td>
             <td th:text="${#numbers.formatDecimal(cart.product.price, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></td>
+            <td th:text="${cart.user.firstName}"></td>
             <td class="cart-qty">
                 <a th:href="@{/cart/decrease/{id}(id=${cart.product.id})}">
                     <button type="button">-</button>
@@ -43,7 +45,7 @@
 
 <h3 style="width: 500px; font-weight: bold; text-align: end">Total: <span th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')} + ' ₸'"></span></h3>
 
-<a class="button-checkout" href="/checkout">Checkout</a>
+<a href="/checkout"><button class="button-checkout">Checkout</button></a>
 <br>
 <a class="button-shopping" href="/products-list">Continue Shopping</a>
 

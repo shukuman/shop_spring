@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CartRepository extends JpaRepository<Cart, Long> {
 
-    @Query("select c from Cart c order by c.id")
+    @Query("select c from Cart c order by c.user.id")
     List<Cart> getAllCarts();
 
     @Query("select c from Cart c where c.id = :cartId")
