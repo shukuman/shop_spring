@@ -17,8 +17,15 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping(path = "/categories")
-    public String showAllCategories(Model model) {
+    public String showAllCategories(@RequestParam(defaultValue = "1") int page, Model model) {
         List<Category> categories = categoryService.getAllCategories();
+
+        int pageSize = 10;
+        int totalCategories = categories.size();
+        int totalPages = (int) Math.ceil((double) totalCategories / pageSize);
+
+        model.addAttribute("page", page);
+        model.addAttribute("totalPages", totalPages);
         model.addAttribute("categories", categories);
         return "categories";
     }

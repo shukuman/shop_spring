@@ -6,19 +6,30 @@
     <link rel="stylesheet" href="css/table-style.css">
 </head>
 <body>
+<table class="menu">
+    <thead>
+    <tr>
+        <th><a href="/products">Products</a></th>
+        <th><a href="/categories">Categories</a></th>
+        <th><a href="/specifications">Specifications</a></th>
+    </tr>
+    </thead>
+</table>
+<br>
 <div>
     <h2> Categories</h2>
-    <table class="table" style="width: 500px">
+    <table class="table" style="width: 600px">
         <thead>
         <tr>
             <th>№</th>
-            <th>NAME</th>
+            <th>Name</th>
             <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="category, iterStat : ${categories}">
+        <tr th:each="category, iterStat : ${categories}"
+            th:if="${iterStat.index >= ((page - 1) * 10)} and ${iterStat.index < (page * 10)}">
             <td th:text="${iterStat.count}"></td>
             <td th:text="${category.name}"></td>
             <td>
@@ -32,6 +43,26 @@
         </tr>
         </tbody>
     </table>
+
+    <div>
+        <a style="color: cornflowerblue; font-weight: bold"
+           th:if="${page > 1}"
+           th:href="@{/categories(page=${page - 1})}">Previous
+        </a>
+
+        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a style="color: cornflowerblue; font-weight: bold"
+               th:href="@{/categories(page=${i})}"
+               th:text="${i}">
+            </a>
+        </span>
+
+        <a style="color: cornflowerblue; font-weight: bold"
+           th:if="${page < totalPages}"
+           th:href="@{/categories(page=${page + 1})}">Next
+        </a>
+    </div>
+
 </div>
 <a th:href="@{category-create}"><button class="button-c" type="button">Create</button></a>
 </body>
