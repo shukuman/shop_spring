@@ -20,8 +20,15 @@ public class SpecificationController {
     private final CategoryService categoryService;
 
     @GetMapping(path = "/specifications")
-    public String showAllSpecifications(Model model) {
+    public String showAllSpecifications(@RequestParam(defaultValue = "1") int page, Model model) {
         List<Specification> specifications = specificationService.getAllSpecifications();
+
+        int pageSize = 10;
+        int totalSpecifications = specifications.size();
+        int totalPages = (int) Math.ceil((double) totalSpecifications / pageSize);
+
+        model.addAttribute("page", page);
+        model.addAttribute("totalPages", totalPages);
         model.addAttribute("specifications", specifications);
         return "specifications";
     }

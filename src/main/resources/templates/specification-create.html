@@ -16,8 +16,9 @@
         <input type="text" th:field="*{name}" id="name">
         <br>
 
-        <label for="categoryId"></label>
+        <label for="categoryId">Select category:</label>
         <select name="category" id="categoryId">
+            <option value="true" disabled selected></option>
             <option th:each="category : ${categories}"
                     th:value="${category.id}"
                     th:text="${category.name}">
